@@ -11,7 +11,7 @@ Built by **Felix Hardt** - [github.com/Felix2180](https://github.com/Felix2180)
 * **OSC to MIDI Translation:** Converts a specific OSC address format into MIDI Note On/Off messages.
 * **Command Line Configuration:** Easy setup via an interactive console menu.
 * **Network Setup:** Select the local network interface and custom OSC listening port (UDP).
-* **MIDI Output Selection:** Select any available virtual MIDI output port (e.g., from LoopMIDI).
+* **MIDI Output Selection:** Select any available virtual or phsyical MIDI output port (e.g., from LoopMIDI).
 * **Persistence:** Automatically saves and loads the last used settings (`config.json`).
 * **Multilingual:** Supports English and German interfaces.
 * **Clean Interface:** Clears the console after each menu selection for a tidy experience.
@@ -90,4 +90,4 @@ pip install pyinstaller
 ```bash
 pyinstaller --onefile --hidden-import mido.backends.rtmidi converter.py
 ```
-3. The executable (converter.exe) will be found in the newly created dist folder.
+3. The executable (`converter.exe`) will be found in the newly created `dist` folder.
