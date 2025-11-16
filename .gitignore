@@ -1,1 +1,17 @@
 config.json
+dist/converter.exe
+converter.spec
+build/converter/xref-converter.html
+build/converter/warn-converter.txt
+build/converter/PYZ-00.toc
+build/converter/PYZ-00.pyz
+build/converter/PKG-00.toc
+build/converter/localpycs/struct.pyc
+build/converter/localpycs/pyimod04_pywin32.pyc
+build/converter/localpycs/pyimod03_ctypes.pyc
+build/converter/localpycs/pyimod02_importers.pyc
+build/converter/localpycs/pyimod01_archive.pyc
+build/converter/EXE-00.toc
+build/converter/converter.pkg
+build/converter/base_library.zip
+build/converter/Analysis-00.toc
