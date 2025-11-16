@@ -139,7 +139,10 @@ def _(key):
     return TEXTS[LANGUAGE][key]
 
 def clear_console():
-    """Löscht die Konsole."""
+    """Löscht die Konsole und setzt den Titel des Fensters"""
+    if os.name == 'nt':
+        os.system('title OSC to MIDI Bridge - V1.0')
+        
     os.system('cls' if os.name == 'nt' else 'clear')
     time.sleep(0.05) 
 
