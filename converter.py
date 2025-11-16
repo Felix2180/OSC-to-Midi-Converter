@@ -7,20 +7,20 @@ import time
 from pythonosc.dispatcher import Dispatcher
 from pythonosc.osc_server import BlockingOSCUDPServer
 
-# --- Globale Einstellungen ---
+
 CONFIG_FILE = 'config.json'
 OSC_PORT = 5005
 VERBOSE = False
 OSC_IP = None
 MIDI_PORT_NAME = None
 OUTPUT_PORT = None
-LANGUAGE = 'en' # Standard: Englisch
+LANGUAGE = 'en' 
 
-# --- Texte für Sprachauswahl ---
+
 TEXTS = {
     'de': {
         'title': "OSC zu MIDI Konverter Einstellungen",
-        'author_line': "Made by Felix Hardt - github.com/Felix2180", # Hinzugefügt
+        'author_line': "Made by Felix Hardt - github.com/Felix2180",
         'opt1': "Netzwerk Interface (Hören):",
         'opt2': "OSC Port (Hören):",
         'opt3': "MIDI Port (Senden):",
@@ -77,7 +77,7 @@ TEXTS = {
     },
     'en': {
         'title': "OSC to MIDI Converter Settings",
-        'author_line': "Made by Felix Hardt - github.com/Felix2180", # Hinzugefügt
+        'author_line': "Made by Felix Hardt - github.com/Felix2180", 
         'opt1': "Network Interface (Listen):",
         'opt2': "OSC Port (Listen):",
         'opt3': "MIDI Port (Send):",
@@ -134,7 +134,7 @@ TEXTS = {
     }
 }
 
-# --- Hilfsfunktionen ---
+
 
 def _(key):
     """Gibt den Text in der aktuellen Sprache zurück."""
@@ -148,7 +148,7 @@ def clear_console():
     os.system('cls' if os.name == 'nt' else 'clear')
     time.sleep(0.05) 
 
-# --- Konfiguration Speichern/Laden ---
+
 
 def load_settings():
     global OSC_PORT, VERBOSE, OSC_IP, MIDI_PORT_NAME, LANGUAGE
@@ -182,7 +182,6 @@ def save_settings():
     except Exception as e:
         print(_('settings_fail_save').format(e=e))
 
-# --- OSC Handler Funktion ---
 
 def osc_to_midi_handler(address, *args):
     global OUTPUT_PORT, VERBOSE
@@ -227,7 +226,7 @@ def osc_to_midi_handler(address, *args):
     except Exception as e:
         print(_('unexpected_err').format(e=e))
 
-# --- Netzwerk- und Einstellungsfunktionen ---
+
 
 def get_network_interfaces():
     interfaces = ["127.0.0.1 (localhost)"]
@@ -256,7 +255,7 @@ def print_settings_menu():
         
         print("\n" + "="*50)
         print(_('title'))
-        print(_('author_line')) # NEU: Autorenzeile
+        print(_('author_line')) 
         print("="*50)
         print(f"1. {_('opt1')}  {'**' + (OSC_IP if OSC_IP else _('not_selected')) + '**'}")
         print(f"2. {_('opt2')}            **{OSC_PORT}**")
@@ -264,7 +263,7 @@ def print_settings_menu():
         print(f"4. {_('opt4')}             **{log_status}**")
         print(f"5. {_('opt5')}             **{lang_status}**")
         
-        # F-Strings für korrekte Anzeige
+       
         print(f"\n6. {_('start')}") 
         print(f"7. {_('exit')}")
         print("="*50)
@@ -418,12 +417,12 @@ def select_midi_port():
             print(_('selection_err_num'))
             time.sleep(1)
 
-# --- Server Start ---
+
 
 def start_server():
     global OSC_IP, OSC_PORT, VERBOSE
     
-    # Import muss hier sein, falls es im Header nicht global verfügbar ist
+
     from pythonosc.dispatcher import Dispatcher 
     from pythonosc.osc_server import BlockingOSCUDPServer
     
@@ -456,14 +455,13 @@ def start_server():
         time.sleep(1)
 
 
-# --- Skript Start ---
 if __name__ == "__main__":
     load_settings()
     
-    # Versuche den MIDI-Port aus den geladenen Einstellungen zu öffnen
+
     if MIDI_PORT_NAME:
         try:
-            # Import muss hier sein, falls es im Header nicht global verfügbar ist
+
             import mido 
             OUTPUT_PORT = mido.open_output(MIDI_PORT_NAME)
             print(_('midi_loaded_ok').format(name=MIDI_PORT_NAME))
@@ -474,7 +472,7 @@ if __name__ == "__main__":
             time.sleep(2)
             MIDI_PORT_NAME = None
 
-    # Falls kein Port aus der Konfig geladen/geöffnet werden konnte, starte die manuelle Auswahl
+
     if not MIDI_PORT_NAME:
         select_midi_port()
 
